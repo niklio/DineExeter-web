@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--Viewport-->
+	<!--No Zoom-->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<!--SEO-->
+	<title></title>
+	<meta charset='utf-8'>
+	<meta name='author' content='Nik Liolios'>
+	<meta name='description' content='Dine Exeter'>
+	<meta name='robots' content='index, follow'>
+	<meta name='revisit-after' content='14 days'>
+
+<!--JS-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+<!--CSS-->
+	<!--Local-->
+	<link rel="stylesheet" type="text/css" href="assets/css/index.css">
+	<!--CDN-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<!--Fonts-->
+	<link href='http://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
+
+</head>
+<body ng-app='diningApp'>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">
+					<img alt="Brand" src="...">
+				</a>
+			</div>
+		</div>
+	</nav>
+	<div ng-controller='listCtrl'>
+		<ul>
+			<li ng-repeat='items'>
+				<div>
+					<span>{{name}}</span>
+				</div>
+				<div class='arrow-wrap'>
+					<button class='arrow-up'></button>
+					<button class='arrow-down'></button>
+				</div>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>
