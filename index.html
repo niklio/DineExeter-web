@@ -28,7 +28,7 @@
 
 </head>
 <body ng-app='dineexeter' ng-controller='FoodController as food'>
-	<div class='loading' ng-if='items === null'>
+	<div class='loading' ng-show='items === null'>
 		<div class='center'>
 			<img src="assets/img/icon/lion-white.png">
 			<div id="squaresWaveG">
@@ -43,7 +43,7 @@
 			</div>
 		</div>
 	</div>
-	<nav class="navbar navbar-red navbar-fixed-top" ng-if='items !== null'>
+	<nav class="navbar navbar-red navbar-fixed-top" ng-show='items !== null'>
 		<div class="container">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="#">
@@ -53,7 +53,7 @@
 			</div>
 		</div>
 	</nav>
-	<div ng-if='items !== null'>
+	<div ng-show='items !== null'>
 		<ul class='foodlist'>
 			<li class='food' ng-repeat='item in items'>
 				<div class='description-wrap'>
@@ -66,12 +66,18 @@
 			</li>
 		</ul>
 	</div>
-	<footer class='footer' ng-if='items !== null'>
+	<footer class='footer' ng-show='items !== null'>
 		<div class='container'>
 			<div class="btn-group btn-group-justified" role="group">
-				<a class='btn btn-default' id='weth' role='button'>Wetherell</a>
-				<a class='btn btn-default' id='elm' role='button'>Elm Street</a>
+				<a class='btn btn-default' id='weth' role='button' ng-click='iselm = false'>Wetherell</a>
+				<a class='not-displayed btn btn-default' id='elm' role='button' ng-click='iselm = true'>Elm Street</a>
 			</div>
+			<script type="text/javascript">
+				$('.btn-group a').on('click', function(e) {
+					$('.btn-group a').removeClass('not-displayed')
+					$(this).addClass('not-displayed')
+				})
+			</script>
 		</div>
 	</footer>
 </body>
