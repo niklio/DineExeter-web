@@ -20,16 +20,40 @@ function currentMeal(fromMeal) {
 
 var app = angular.module('dineexeter', []);
 
+var cache = null
+
 app.controller('FoodController', function FoodController($scope, $http) {
 	$scope.iselm = true;
 	$scope.$watch('iselm', function() {
 		$scope.items = null;
 		$http.get(root + '/api/foods?mealday=' + currentMeal(0) + '&iselm=' + $scope.iselm)
 		.then(function(resp) {
-			$scope.items = resp.data
+			if ( cache != null ) {
+				var temp = $scope.items
+				$scope.items = cache
+				cache = temp
+			} else {
+				$scope.items = resp.data
+			}
 			console.log($scope.items)
 		}, function(err) {
 			console.error('Error: ', err);
 		})
 	})
+
+	$scope.vote = null
+	$scope.castvote = function($event, id, direction) {
+		$http.post(root + '/api/vote/' + id, { upvote: direction })
+			.success(function(data, status, headers, config) {
+				console.log('here')
+				if ( direction ) {
+					$($event.target).parent().empty().addClass('upvoted')
+				} else {
+					$($event.target).parent().empty().addClass('downvoted')
+				}
+			})
+			.error(function(data, status, headers, config) {
+				console.error('Error: ', err);
+			});
+	}
 });
