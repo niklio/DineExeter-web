@@ -1,0 +1,12 @@
+{
+  "name": "DineExeter-web",
+  "description": "Application client for Phillips Exeter dining hall",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nliolios24/DineExeter-web.git"
+  },
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
