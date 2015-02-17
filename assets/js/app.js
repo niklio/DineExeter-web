@@ -22,38 +22,58 @@ var app = angular.module('dineexeter', []);
 
 var cache = null
 
-app.controller('FoodController', function FoodController($scope, $http) {
+app.controller('FoodController', function FoodController($scope, $http, $timeout) {
 	$scope.iselm = true;
-	$scope.$watch('iselm', function() {
+	$scope.fromMeal = 0;
+
+	$scope.$watchGroup(['fromMeal', 'iselm'], function() {
 		$scope.items = null;
-		$http.get(root + '/api/foods?mealday=' + currentMeal(0) + '&iselm=' + $scope.iselm)
+
+		var now = new Date();
+		$http.get(root + '/api/foods?mealday=' + currentMeal($scope.fromMeal) + '&iselm=' + $scope.iselm)
 		.then(function(resp) {
-			if ( cache != null ) {
-				var temp = $scope.items
-				$scope.items = cache
-				cache = temp
-			} else {
-				$scope.items = resp.data
-			}
-			console.log($scope.items)
+			$timeout(function() {
+				if ( cache != null ) {
+					var temp = $scope.items
+					$scope.items = cache
+					cache = temp
+				} else {
+					$scope.items = resp.data
+				}
+			}, 500 - ((new Date()).getTime() - now.getTime()));
+			
 		}, function(err) {
 			console.error('Error: ', err);
 		})
 	})
 
+
+	$(".swipeWrapper").swipe({
+		swipe: function(event, direction, distance, duration, fingerCount, fingerData) {
+			$scope.$apply(function() {
+				if (direction == 'right' && $scope.fromMeal > 0) $scope.fromMeal--
+				else if (direction == 'left') $scope.fromMeal++
+			});
+		}
+	});
+
+
 	$scope.vote = null
 	$scope.castvote = function($event, id, direction) {
 		$http.post(root + '/api/vote/' + id, { upvote: direction })
 			.success(function(data, status, headers, config) {
-				console.log('here')
-				if ( direction ) {
-					$($event.target).parent().empty().addClass('upvoted')
-				} else {
-					$($event.target).parent().empty().addClass('downvoted')
-				}
+				showvote(direction, $event.target)
 			})
 			.error(function(data, status, headers, config) {
 				console.error('Error: ', err);
 			});
+	}
+
+	function showvote(direction, element) {
+		if ( direction ) {
+			$(element).parent().empty().addClass('upvoted')
+		} else {
+			$(element).parent().empty().addClass('downvoted')
+		}
 	}
 });

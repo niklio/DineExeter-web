@@ -11,6 +11,10 @@ html, body {
 	background-color: #fffffa;
 }
 
+a {
+	color: white !important;
+}
+
 .loading {
 	height: 100%;
 	width: 100%;
@@ -340,16 +344,8 @@ footer .btn-default:hover {
 	background-image: url('../img/icon/arrow-red-down.svg');
 }
 
-.not-displayed {
-	background-color: #666 !important;
-	color: #fff;
-	-webkit-box-shadow: inset 0px 0px 1px 1px #333;
-	-moz-box-shadow:    inset 0px 0px 1px 1px #333;
-	box-shadow:         inset 0px 0px 1px 1px #333;
-}
-
 .upvoted, .downvoted {
-	background-size: 75%;
+	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center
 }
