@@ -1,4 +1,4 @@
-var root = 'dineexeter.herokuapp.com';
+var root = 'http://dineexeter.herokuapp.com';
 
 function currentMeal(fromMeal) {
 	var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
