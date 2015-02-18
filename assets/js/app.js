@@ -32,6 +32,7 @@ app.controller('FoodController', function FoodController($scope, $http, $timeout
 		var now = new Date();
 		$http.get(root + '/api/foods?mealday=' + currentMeal($scope.fromMeal) + '&iselm=' + $scope.iselm)
 		.then(function(resp) {
+			console.log(resp.data)
 			$timeout(function() {
 				if ( cache != null ) {
 					var temp = $scope.items
