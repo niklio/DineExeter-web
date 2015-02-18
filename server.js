@@ -3,7 +3,7 @@ var http = require("http"),
     path = require("path"),
     fs = require("fs"),
     mime = require("mime")
-    port = process.argv[2] || 8888;
+    port = process.env.PORT || 8888;
     
 function getExtension(filename) {
     var i = filename.lastIndexOf('.');
