@@ -272,6 +272,7 @@ footer .btn-default:hover {
 	box-model: border-box;
 	margin: 0;
 	width: 100%;
+	min-height: 100%
 }
 
 .foodlist > li {
