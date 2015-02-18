@@ -266,6 +266,11 @@ footer .btn-default:hover {
 	-moz-box-shadow:    inset 0px 0px 1px 1px #333;
 	box-shadow:         inset 0px 0px 1px 1px #333;
 }
+
+.swipeWrapper{
+	height: 100%;
+}
+
 .foodlist {
 	overflow: none;
 	padding: 60px 0;
